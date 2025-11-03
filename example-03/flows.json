@@ -1,0 +1,306 @@
+[
+    {
+        "id": "adfa1ddb.8a81d8",
+        "type": "tab",
+        "label": "Flow 2",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "75e26c4d.c77124",
+        "type": "ui_chart",
+        "z": "adfa1ddb.8a81d8",
+        "name": "Registro Histórico",
+        "group": "8880d363.148ac",
+        "order": 2,
+        "width": "0",
+        "height": "0",
+        "label": "Chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": "24",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#00e68c",
+            "#2d2da8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 690,
+        "y": 340,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d5894126.9878f8",
+        "type": "mysql",
+        "z": "adfa1ddb.8a81d8",
+        "mydb": "a844720c.608d6",
+        "name": "MYSQL",
+        "x": 300,
+        "y": 340,
+        "wires": [
+            [
+                "3a12a452.68f12c",
+                "ddcec558.61e4f"
+            ]
+        ]
+    },
+    {
+        "id": "a85b780b.6291a8",
+        "type": "debug",
+        "z": "adfa1ddb.8a81d8",
+        "name": "Datos formateados",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 690,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "5cc3a12d.07037",
+        "type": "comment",
+        "z": "adfa1ddb.8a81d8",
+        "name": "Consulta a la base de datos y formateo de datos para el grafico",
+        "info": "",
+        "x": 250,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "b611833d.bb4238",
+        "type": "mysql",
+        "z": "adfa1ddb.8a81d8",
+        "mydb": "a844720c.608d6",
+        "name": "MYSQL",
+        "x": 400,
+        "y": 80,
+        "wires": [
+            [
+                "3580bf86.420058"
+            ]
+        ]
+    },
+    {
+        "id": "e7eb8f6f.205028",
+        "type": "template",
+        "z": "adfa1ddb.8a81d8",
+        "name": "Consulta SQL",
+        "field": "topic",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "INSERT INTO sensores (idSensor, message) VALUES (325, 65);",
+        "output": "str",
+        "x": 240,
+        "y": 80,
+        "wires": [
+            [
+                "b611833d.bb4238"
+            ]
+        ]
+    },
+    {
+        "id": "cfcf10f9.917c38",
+        "type": "comment",
+        "z": "adfa1ddb.8a81d8",
+        "name": "Consulta para insertar datos en la base de datos",
+        "info": "",
+        "x": 190,
+        "y": 30,
+        "wires": []
+    },
+    {
+        "id": "af995506.7e41f8",
+        "type": "template",
+        "z": "adfa1ddb.8a81d8",
+        "name": "Consulta SQL",
+        "field": "topic",
+        "fieldType": "msg",
+        "format": "sql",
+        "syntax": "plain",
+        "template": "SELECT evento, message FROM sensores;",
+        "output": "str",
+        "x": 240,
+        "y": 240,
+        "wires": [
+            [
+                "d5894126.9878f8"
+            ]
+        ]
+    },
+    {
+        "id": "668a8648.a4618",
+        "type": "inject",
+        "z": "adfa1ddb.8a81d8",
+        "name": "Insertar",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payloadType": "str",
+        "x": 90,
+        "y": 240,
+        "wires": [
+            [
+                "af995506.7e41f8"
+            ]
+        ]
+    },
+    {
+        "id": "3a12a452.68f12c",
+        "type": "function",
+        "z": "adfa1ddb.8a81d8",
+        "name": "Formateo",
+        "func": "//Formateo de datos para el grafico\nlet series =[\"sensor\"];\nlet labels = [\"sensor\"];\nlet data = [];\nlet i, len, string;\n\nfor (i = 0, len = msg.payload.length, string = \"\"; i < len; i++) {\n  data.push({\"x\":Date.parse(msg.payload[i].evento), \"y\":Number(msg.payload[i].message)});\n}\n\ndata = [data];\nmsg.payload = [{series, data, labels}];\nmsg.topic = \"sensor\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 480,
+        "y": 400,
+        "wires": [
+            [
+                "75e26c4d.c77124",
+                "a85b780b.6291a8",
+                "dd956c20.48c478"
+            ]
+        ]
+    },
+    {
+        "id": "ddcec558.61e4f",
+        "type": "debug",
+        "z": "adfa1ddb.8a81d8",
+        "name": "Resultado Consulta",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 510,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "dd956c20.48c478",
+        "type": "file",
+        "z": "adfa1ddb.8a81d8",
+        "d": true,
+        "name": "Guardar en disco",
+        "filename": "data_parse.json",
+        "appendNewline": true,
+        "createDir": false,
+        "overwriteFile": "true",
+        "encoding": "none",
+        "x": 690,
+        "y": 400,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9e9a2316.968738",
+        "type": "inject",
+        "z": "adfa1ddb.8a81d8",
+        "name": "Datos",
+        "props": [
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "x": 90,
+        "y": 80,
+        "wires": [
+            [
+                "e7eb8f6f.205028"
+            ]
+        ]
+    },
+    {
+        "id": "3580bf86.420058",
+        "type": "debug",
+        "z": "adfa1ddb.8a81d8",
+        "name": "Resultado Consulta",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 590,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "8880d363.148ac",
+        "type": "ui_group",
+        "name": "Grupo #4",
+        "tab": "db58ad1a.e37a8",
+        "order": 2,
+        "disp": false,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "a844720c.608d6",
+        "type": "MySQLdatabase",
+        "name": "",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "db": "arduino",
+        "tz": "",
+        "charset": ""
+    },
+    {
+        "id": "db58ad1a.e37a8",
+        "type": "ui_tab",
+        "name": "Tab #3",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

@@ -1,0 +1,1123 @@
+[
+    {
+        "id": "bae2dd619cbf0f6c",
+        "type": "tab",
+        "label": "Domotica",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "e8ed09298323e9b2",
+        "type": "ui_text",
+        "z": "bae2dd619cbf0f6c",
+        "group": "6d6228d5d2e4d475",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Uptime (min):",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 640,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "091bdf312db04ae9",
+        "type": "inject",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 140,
+        "y": 800,
+        "wires": [
+            [
+                "ffdd62c7ec93f038",
+                "f54f4ee377c402da",
+                "13f2051be4c1bd12",
+                "532a345e0ac5bf88"
+            ]
+        ]
+    },
+    {
+        "id": "ffdd62c7ec93f038",
+        "type": "Uptime",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "x": 320,
+        "y": 820,
+        "wires": [
+            [
+                "599f69dbad415604"
+            ]
+        ]
+    },
+    {
+        "id": "aa3b3a9f41ee4a27",
+        "type": "mqtt in",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "topic": "home/living/sensor_int",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "700e3df2c58b929f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 220,
+        "y": 100,
+        "wires": [
+            [
+                "8ec70b5dea298370"
+            ]
+        ]
+    },
+    {
+        "id": "8ec70b5dea298370",
+        "type": "ui_gauge",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "group": "02dc04a7d724f88a",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Temperatura",
+        "label": "°C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "40",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "diff": false,
+        "className": "",
+        "x": 490,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "c30b3c4fbb7ffd53",
+        "type": "mqtt in",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "topic": "home/living/sensor_float",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "700e3df2c58b929f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 160,
+        "wires": [
+            [
+                "6af88364b117c62d"
+            ]
+        ]
+    },
+    {
+        "id": "6af88364b117c62d",
+        "type": "ui_chart",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "group": "02dc04a7d724f88a",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "label": "Humedad",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "",
+        "ymax": "",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "3600",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "className": "",
+        "x": 500,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0aafa690bd69f6be",
+        "type": "mqtt in",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "topic": "home/garage/sensor_char",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "700e3df2c58b929f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 220,
+        "wires": [
+            [
+                "f7658dfaf7cc9a46"
+            ]
+        ]
+    },
+    {
+        "id": "f7658dfaf7cc9a46",
+        "type": "ui_text",
+        "z": "bae2dd619cbf0f6c",
+        "group": "9171bbe5307c0783",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Mensaje",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 500,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "2afb9b2fbe750799",
+        "type": "mqtt out",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "topic": "home/garage/sensor_bool",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "700e3df2c58b929f",
+        "x": 450,
+        "y": 300,
+        "wires": []
+    },
+    {
+        "id": "880541a9c42b8d95",
+        "type": "ui_switch",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "label": "Luces",
+        "tooltip": "",
+        "group": "b966b007fb1a0b2f",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 170,
+        "y": 300,
+        "wires": [
+            [
+                "2afb9b2fbe750799",
+                "d298a3591dcd9f6a"
+            ]
+        ]
+    },
+    {
+        "id": "d91063af9623e856",
+        "type": "ui_led",
+        "z": "bae2dd619cbf0f6c",
+        "order": 2,
+        "group": "b966b007fb1a0b2f",
+        "width": "6",
+        "height": "2",
+        "label": "Estado Luces",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#d8cfcf",
+                "value": "false",
+                "valueType": "bool"
+            },
+            {
+                "color": "#dc1304",
+                "value": "true",
+                "valueType": "bool"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 510,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "9c6027f19f4a3e02",
+        "type": "mqtt in",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "topic": "home/garage/sensor_bool",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "700e3df2c58b929f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 230,
+        "y": 360,
+        "wires": [
+            [
+                "d91063af9623e856"
+            ]
+        ]
+    },
+    {
+        "id": "f54f4ee377c402da",
+        "type": "OS",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "x": 330,
+        "y": 780,
+        "wires": [
+            [
+                "abf4a0d1817597ce",
+                "c57bbf6b72d999e1"
+            ]
+        ]
+    },
+    {
+        "id": "af8606598cd6d7ca",
+        "type": "ui_text",
+        "z": "bae2dd619cbf0f6c",
+        "group": "6d6228d5d2e4d475",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "OS",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 670,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "abf4a0d1817597ce",
+        "type": "function",
+        "z": "bae2dd619cbf0f6c",
+        "name": "function 1",
+        "func": "msg.payload = msg.payload.type;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 740,
+        "wires": [
+            [
+                "af8606598cd6d7ca"
+            ]
+        ]
+    },
+    {
+        "id": "c57bbf6b72d999e1",
+        "type": "function",
+        "z": "bae2dd619cbf0f6c",
+        "name": "function 2",
+        "func": "msg.payload = msg.payload.release;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 780,
+        "wires": [
+            [
+                "7b7903d4575717df"
+            ]
+        ]
+    },
+    {
+        "id": "7b7903d4575717df",
+        "type": "ui_text",
+        "z": "bae2dd619cbf0f6c",
+        "group": "6d6228d5d2e4d475",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Release",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 660,
+        "y": 780,
+        "wires": []
+    },
+    {
+        "id": "599f69dbad415604",
+        "type": "function",
+        "z": "bae2dd619cbf0f6c",
+        "name": "function 3",
+        "func": "msg.payload = parseInt(msg.payload.uptime / 60);\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 480,
+        "y": 820,
+        "wires": [
+            [
+                "e8ed09298323e9b2"
+            ]
+        ]
+    },
+    {
+        "id": "0b9a22864887a395",
+        "type": "comment",
+        "z": "bae2dd619cbf0f6c",
+        "name": "Tab SERVER",
+        "info": "",
+        "x": 110,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "b827355fef415e89",
+        "type": "comment",
+        "z": "bae2dd619cbf0f6c",
+        "name": "Tab HOME",
+        "info": "",
+        "x": 100,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "718339f4c4f11846",
+        "type": "comment",
+        "z": "bae2dd619cbf0f6c",
+        "name": "Base de datos",
+        "info": "",
+        "x": 110,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "13f2051be4c1bd12",
+        "type": "exec",
+        "z": "bae2dd619cbf0f6c",
+        "command": "vcgencmd measure_temp",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 370,
+        "y": 880,
+        "wires": [
+            [
+                "e5313ed2923bae45"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "e5313ed2923bae45",
+        "type": "ui_text",
+        "z": "bae2dd619cbf0f6c",
+        "group": "ea10ec278f2b57ec",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "CPU Temperatura",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 630,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "532a345e0ac5bf88",
+        "type": "exec",
+        "z": "bae2dd619cbf0f6c",
+        "command": "vcgencmd measure_volts",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "",
+        "x": 370,
+        "y": 940,
+        "wires": [
+            [
+                "78f27f8c9a3ce930"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "78f27f8c9a3ce930",
+        "type": "ui_text",
+        "z": "bae2dd619cbf0f6c",
+        "group": "ea10ec278f2b57ec",
+        "order": 0,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "CPU Tensión",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 650,
+        "y": 940,
+        "wires": []
+    },
+    {
+        "id": "ac12d10d6903e2c8",
+        "type": "sqlite",
+        "z": "bae2dd619cbf0f6c",
+        "mydb": "eaa6e396b8a3dcc2",
+        "sqlquery": "msg.topic",
+        "sql": "",
+        "name": "SQLite",
+        "x": 470,
+        "y": 1080,
+        "wires": [
+            [
+                "a3d750131f161c3a",
+                "968f202ad7fa74aa"
+            ]
+        ]
+    },
+    {
+        "id": "a3d750131f161c3a",
+        "type": "debug",
+        "z": "bae2dd619cbf0f6c",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 620,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "d298a3591dcd9f6a",
+        "type": "link out",
+        "z": "bae2dd619cbf0f6c",
+        "name": "luces",
+        "mode": "link",
+        "links": [
+            "8142527b83c441ca",
+            "3af265d45460e080"
+        ],
+        "x": 295,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "8142527b83c441ca",
+        "type": "link in",
+        "z": "bae2dd619cbf0f6c",
+        "name": "luces",
+        "links": [
+            "d298a3591dcd9f6a"
+        ],
+        "x": 105,
+        "y": 1080,
+        "wires": [
+            [
+                "04e8feb76202c716"
+            ]
+        ]
+    },
+    {
+        "id": "04e8feb76202c716",
+        "type": "function",
+        "z": "bae2dd619cbf0f6c",
+        "name": "INSERT eventos",
+        "func": "let consulta;\n\nif (msg.payload == true) {\n    consulta = \"INSERT INTO eventos (ev_tipo_evento, ev_am_id, ev_di_id, ev_valor, ev_descripcion) VALUES ('Cambio de estado llave', 8, 3, 1.0, 'La llave de luces fue activada.')\";\n}\nelse {\n    consulta = \"INSERT INTO eventos (ev_tipo_evento, ev_am_id, ev_di_id, ev_valor, ev_descripcion) VALUES ('Cambio de estado llave', 8, 3, 0.0, 'La llave de luces fue desactivada.')\";\n}\n\nmsg.topic = consulta;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 250,
+        "y": 1080,
+        "wires": [
+            [
+                "ac12d10d6903e2c8"
+            ]
+        ]
+    },
+    {
+        "id": "1b0f3f300bb241f5",
+        "type": "inject",
+        "z": "bae2dd619cbf0f6c",
+        "name": "SELECT eventos",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "60",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "SELECT     d.di_tipo AS tipo_dispositivo,     a.am_nombre AS ambiente,     e.ev_timestamp AS hora,     e.ev_valor AS valor FROM     eventos e JOIN     dispositivos d ON e.ev_di_id = d.di_id JOIN     ambientes a ON e.ev_am_id = a.am_id;",
+        "payload": "",
+        "payloadType": "date",
+        "x": 210,
+        "y": 1140,
+        "wires": [
+            [
+                "ac12d10d6903e2c8"
+            ]
+        ]
+    },
+    {
+        "id": "968f202ad7fa74aa",
+        "type": "ui_table",
+        "z": "bae2dd619cbf0f6c",
+        "group": "627a8bd6f8598fdf",
+        "name": "Eventos",
+        "order": 0,
+        "width": "12",
+        "height": "8",
+        "columns": [],
+        "outputs": 0,
+        "cts": false,
+        "x": 640,
+        "y": 1140,
+        "wires": []
+    },
+    {
+        "id": "97aa1c6535a93ef1",
+        "type": "comment",
+        "z": "bae2dd619cbf0f6c",
+        "name": "Modbus",
+        "info": "",
+        "x": 90,
+        "y": 1200,
+        "wires": []
+    },
+    {
+        "id": "589512513d5c0e4e",
+        "type": "modbus-write",
+        "z": "bae2dd619cbf0f6c",
+        "d": true,
+        "name": "",
+        "showStatusActivities": true,
+        "showErrors": true,
+        "showWarnings": true,
+        "unitid": "2",
+        "dataType": "Coil",
+        "adr": "0",
+        "quantity": "1",
+        "server": "5ae2b5d81251aae1",
+        "emptyMsgOnFail": false,
+        "keepMsgProperties": false,
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "x": 400,
+        "y": 1280,
+        "wires": [
+            [
+                "7c0d43096abefaac"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "7c0d43096abefaac",
+        "type": "debug",
+        "z": "bae2dd619cbf0f6c",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 600,
+        "y": 1340,
+        "wires": []
+    },
+    {
+        "id": "df8040b0d826cf5e",
+        "type": "ui_switch",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "label": "Switch Modbus",
+        "tooltip": "",
+        "group": "9171bbe5307c0783",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "1",
+        "onvalueType": "num",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "0",
+        "offvalueType": "num",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 200,
+        "y": 1280,
+        "wires": [
+            [
+                "589512513d5c0e4e"
+            ]
+        ]
+    },
+    {
+        "id": "446d51f0a8628b23",
+        "type": "ui_text",
+        "z": "bae2dd619cbf0f6c",
+        "group": "9171bbe5307c0783",
+        "order": 2,
+        "width": 0,
+        "height": 0,
+        "name": "",
+        "label": "Sensor Modbus",
+        "format": "{{msg.payload}}",
+        "layout": "row-spread",
+        "className": "",
+        "style": false,
+        "font": "",
+        "fontSize": 16,
+        "color": "#000000",
+        "x": 620,
+        "y": 1420,
+        "wires": []
+    },
+    {
+        "id": "f015373bd50af86a",
+        "type": "modbus-read",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "topic": "",
+        "showStatusActivities": false,
+        "logIOActivities": false,
+        "showErrors": false,
+        "showWarnings": true,
+        "unitid": "2",
+        "dataType": "InputRegister",
+        "adr": "0",
+        "quantity": "1",
+        "rate": "5",
+        "rateUnit": "s",
+        "delayOnStart": false,
+        "startDelayTime": "",
+        "server": "5ae2b5d81251aae1",
+        "useIOFile": false,
+        "ioFile": "",
+        "useIOForPayload": false,
+        "emptyMsgOnFail": false,
+        "x": 210,
+        "y": 1360,
+        "wires": [
+            [
+                "7c0d43096abefaac"
+            ],
+            [
+                "a07867a1c3aea7c0"
+            ]
+        ]
+    },
+    {
+        "id": "a07867a1c3aea7c0",
+        "type": "function",
+        "z": "bae2dd619cbf0f6c",
+        "name": "function 4",
+        "func": "let value = msg.payload.data[0];\nmsg.payload = value;\nreturn msg;",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 440,
+        "y": 1420,
+        "wires": [
+            [
+                "446d51f0a8628b23"
+            ]
+        ]
+    },
+    {
+        "id": "f14f42c229bf5d4c",
+        "type": "mqtt in",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "topic": "home/garage/sensor_bool/cmnd/POWER",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "700e3df2c58b929f",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 280,
+        "y": 500,
+        "wires": [
+            [
+                "bab19c30cae8abf5"
+            ]
+        ]
+    },
+    {
+        "id": "9b8ec340670f8589",
+        "type": "ui_switch",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "label": "Luces WiFi",
+        "tooltip": "",
+        "group": "b966b007fb1a0b2f",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "ON",
+        "onvalueType": "str",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "OFF",
+        "offvalueType": "str",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 190,
+        "y": 440,
+        "wires": [
+            [
+                "527d7124f3253db6"
+            ]
+        ]
+    },
+    {
+        "id": "527d7124f3253db6",
+        "type": "mqtt out",
+        "z": "bae2dd619cbf0f6c",
+        "name": "",
+        "topic": "home/garage/sensor_bool/cmnd/POWER",
+        "qos": "",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "700e3df2c58b929f",
+        "x": 500,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "bab19c30cae8abf5",
+        "type": "ui_led",
+        "z": "bae2dd619cbf0f6c",
+        "order": 2,
+        "group": "b966b007fb1a0b2f",
+        "width": "6",
+        "height": "2",
+        "label": "Estado Luces WiFi",
+        "labelPlacement": "left",
+        "labelAlignment": "left",
+        "colorForValue": [
+            {
+                "color": "#d8cfcf",
+                "value": "OFF",
+                "valueType": "str"
+            },
+            {
+                "color": "#047fdc",
+                "value": "ON",
+                "valueType": "str"
+            }
+        ],
+        "allowColorForValueInMessage": false,
+        "shape": "circle",
+        "showGlow": true,
+        "name": "",
+        "x": 510,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "6d6228d5d2e4d475",
+        "type": "ui_group",
+        "name": "Sistema Operativo",
+        "tab": "dfb9b38758503be4",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": true,
+        "className": ""
+    },
+    {
+        "id": "700e3df2c58b929f",
+        "type": "mqtt-broker",
+        "name": "Mosquitto Local",
+        "broker": "localhost",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "02dc04a7d724f88a",
+        "type": "ui_group",
+        "name": "Habitación",
+        "tab": "c7277e31c07b0f22",
+        "order": 1,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "9171bbe5307c0783",
+        "type": "ui_group",
+        "name": "Cocina",
+        "tab": "c7277e31c07b0f22",
+        "order": 3,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b966b007fb1a0b2f",
+        "type": "ui_group",
+        "name": "Living",
+        "tab": "c7277e31c07b0f22",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "ea10ec278f2b57ec",
+        "type": "ui_group",
+        "name": "Hardware",
+        "tab": "dfb9b38758503be4",
+        "order": 2,
+        "disp": true,
+        "width": "6",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "eaa6e396b8a3dcc2",
+        "type": "sqlitedb",
+        "db": "/home/lucas/.node-red/databases/domotica_lite",
+        "mode": "RW"
+    },
+    {
+        "id": "627a8bd6f8598fdf",
+        "type": "ui_group",
+        "name": "Eventos",
+        "tab": "fad23f8f77bc2898",
+        "order": 1,
+        "disp": true,
+        "width": "12",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "5ae2b5d81251aae1",
+        "type": "modbus-client",
+        "name": "Modbus RTU Server",
+        "clienttype": "simpleser",
+        "bufferCommands": true,
+        "stateLogEnabled": false,
+        "queueLogEnabled": false,
+        "failureLogEnabled": true,
+        "tcpHost": "127.0.0.1",
+        "tcpPort": "502",
+        "tcpType": "DEFAULT",
+        "serialPort": "/dev/ttyUSB0",
+        "serialType": "RTU-BUFFERD",
+        "serialBaudrate": "9600",
+        "serialDatabits": "8",
+        "serialStopbits": "1",
+        "serialParity": "none",
+        "serialConnectionDelay": "100",
+        "serialAsciiResponseStartDelimiter": "0x3A",
+        "unit_id": "1",
+        "commandDelay": "1",
+        "clientTimeout": "3000",
+        "reconnectOnTimeout": true,
+        "reconnectTimeout": "2000",
+        "parallelUnitIdsAllowed": true,
+        "showErrors": false,
+        "showWarnings": true,
+        "showLogs": true
+    },
+    {
+        "id": "dfb9b38758503be4",
+        "type": "ui_tab",
+        "name": "Server",
+        "icon": "computer",
+        "order": 2,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "c7277e31c07b0f22",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    },
+    {
+        "id": "fad23f8f77bc2898",
+        "type": "ui_tab",
+        "name": "Historical",
+        "icon": "history",
+        "order": 3,
+        "disabled": false,
+        "hidden": false
+    }
+]
